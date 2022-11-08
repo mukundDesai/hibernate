@@ -3,22 +3,16 @@ package org.hibernate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Alien {
-    private String name;
-    private String colour;
     @Id
     private int aid;
-
-    @Override
-    public String toString() {
-        return "Alien{" +
-                "name='" + name + '\'' +
-                ", colour='" + colour + '\'' +
-                ", aid=" + aid +
-                '}';
-    }
+    private String name;
+    private String colour;
+    @ManyToOne
+    private Planet planet;
 
     public String getName() {
         return name;
@@ -42,5 +36,23 @@ public class Alien {
 
     public void setAid(int aid) {
         this.aid = aid;
+    }
+
+    public Planet getPlanet() {
+        return planet;
+    }
+
+    public void setPlanet(Planet planet) {
+        this.planet = planet;
+    }
+
+    @Override
+    public String toString() {
+        return "Alien{" +
+                "aid=" + aid +
+                ", name='" + name + '\'' +
+                ", colour='" + colour + '\'' +
+                ", planet=" + planet +
+                '}';
     }
 }
